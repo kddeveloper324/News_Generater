@@ -1,2 +1,2 @@
-# News_Generater
-Create a News Generateor 
+# GEN_AI
+Gen ai Project 
