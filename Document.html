@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Report: Synchro AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0d9488; /* Teal 600 */
+            --secondary: #111827; /* Gray 900 */
+            --accent: #f43f5e; /* Rose 500 */
+            --bg-body: #f0f9ff; /* Sky 50 - NEW BACKGROUND */
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-body);
+            color: #334155;
+            line-height: 1.6;
+        }
+        h1, h2, h3 {
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Custom Header - NEW GRADIENT */
+        .hero-section {
+            background: linear-gradient(120deg, #0f766e 0%, #0e7490 100%);
+            color: white;
+            padding: 4rem 2rem;
+            border-bottom: 5px solid var(--accent);
+            box-shadow: 0 4px 20px rgba(14, 116, 144, 0.25);
+        }
+
+        /* Tech Card New Design */
+        .tech-card-new {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        .tech-card-new:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .card-header {
+            padding: 1.5rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .card-header h3 { color: white; margin: 0; font-size: 1.2rem; letter-spacing: -0.025em; }
+        .card-body { padding: 1.5rem; }
+
+        /* New Gradients for cards */
+        .header-teal { background: linear-gradient(135deg, #0d9488, #115e59); }   /* Weather */
+        .header-indigo { background: linear-gradient(135deg, #6366f1, #4338ca); } /* News */
+        .header-rose { background: linear-gradient(135deg, #f43f5e, #be123c); }   /* Events */
+        .header-dark { background: linear-gradient(135deg, #1f2937, #000000); }   /* Planner */
+
+        /* Workflow Steps */
+        .workflow-step {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px dashed #cbd5e1;
+            padding-bottom: 2rem;
+        }
+        .workflow-step::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #ccfbf1;
+        }
+        .workflow-step:last-child {
+            border-left: none;
+        }
+
+        /* Image Handling */
+        .img-container {
+            background: white;
+            padding: 0.75rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+        .img-container img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .img-caption {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+        }
+        .comparison-table th {
+            background: #f1f5f9;
+            text-align: left;
+            padding: 1.25rem;
+            border-bottom: 2px solid #e2e8f0;
+            color: #334155;
+            font-weight: 600;
+        }
+        .comparison-table td {
+            padding: 1.25rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <span class="bg-teal-500/20 text-teal-50 border border-teal-400/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Architecture Report </span>
+                    <h1 class="text-5xl md:text-6xl mb-4 tracking-tight">Synchro AI</h1>
+                    <p class="text-xl text-cyan-50 max-w-2xl font-light">The Autonomous Daily Synchronization Engine.</p>
+                </div>
+                <div class="mt-8 md:mt-0 text-right hidden md:block bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/10">
+                    <div class="text-xs text-cyan-100 uppercase tracking-widest">Powered By</div>
+                    <div class="font-bold text-2xl mt-1">Gemini 2.5 Flash</div>
+                    <div class="flex gap-2 mt-3 justify-end">
+                        <i class="fas fa-cloud text-teal-300" title="OpenWeather"></i>
+                        <i class="fas fa-newspaper text-indigo-300" title="NewsAPI"></i>
+                        <i class="fas fa-search-location text-rose-300" title="SerpApi"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+        <!-- Table of Contents -->
+        <aside class="lg:col-span-3 hidden lg:block">
+            <div class="sticky top-8 space-y-2">
+                <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 pl-4">Navigation</h3>
+                <a href="#executive-summary" class="block px-4 py-2 text-teal-700 font-bold border-l-4 border-teal-600 bg-white shadow-sm rounded-r-md">1. Project Overview</a>
+                <a href="#api-allocation" class="block px-4 py-2 text-slate-600 hover:text-teal-600 border-l-4 border-transparent hover:border-teal-300 transition">2. API Allocation</a>
+                <a href="#model-strategy" class="block px-4 py-2 text-slate-600 hover:text-teal-600 border-l-4 border-transparent hover:border-teal-300 transition">3. Model Strategy</a>
+                <a href="#smart-planner" class="block px-4 py-2 text-slate-600 hover:text-teal-600 border-l-4 border-transparent hover:border-teal-300 transition">4. Smart Planner</a>
+                <a href="#visuals" class="block px-4 py-2 text-slate-600 hover:text-teal-600 border-l-4 border-transparent hover:border-teal-300 transition">5. Interface Gallery</a>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <div class="lg:col-span-9 space-y-16">
+
+            <!-- Executive Summary -->
+            <section id="executive-summary">
+                <h2 class="text-3xl mb-6">1. Executive Summary</h2>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <p class="text-lg text-slate-600 mb-4">
+                        <strong>Synchro AI</strong> addresses the "Context Gap" in modern personal assistance. While users have access to weather apps and calendars, they lack a unified intelligence that understands how one affects the other.
+                    </p>
+                    <p class="text-lg text-slate-600">
+                        By deploying a multi-tool Agent, Synchro AI doesn't just display data—it <em>reasons</em> with it. It determines that a "Storm Warning" from <strong>OpenWeatherMap</strong> conflicts with an "Outdoor Festival" found via <strong>SerpApi</strong>, and proactively suggests an alternative plan.
+                    </p>
+                </div>
+            </section>
+
+            <!-- API Allocation (NEW SECTION TITLE) -->
+            <section id="api-allocation">
+                <h2 class="text-3xl mb-6">2. API & Tool Allocation</h2>
+                <p class="mb-6 text-slate-500">The system allocates specific external APIs to distinct functional modules to ensure real-time accuracy.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Weather Module -->
+                    <div class="tech-card-new">
+                        <div class="card-header header-teal">
+                            <i class="fas fa-bolt text-2xl"></i>
+                            <h3>OpenWeatherMap</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-xs font-bold text-teal-600 uppercase mb-2 tracking-wider">Atmospheric Data</div>
+                            <p class="text-sm text-slate-600">
+                                Allocated to the <code>get_weather()</code> function. Provides hyper-local temperature, wind speed, and humidity metrics.
+                            </p>
+                            <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center">
+                                <span class="text-xs text-slate-400 font-mono">JSON Feed</span>
+                                <i class="fas fa-check-circle text-teal-500"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- News Module -->
+                    <div class="tech-card-new">
+                        <div class="card-header header-indigo">
+                            <i class="fas fa-rss text-2xl"></i>
+                            <h3>NewsAPI</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-xs font-bold text-indigo-600 uppercase mb-2 tracking-wider">Global Context</div>
+                            <p class="text-sm text-slate-600">
+                                Allocated to the <code>get_news()</code> function. Fetches headlines tailored to user interest tags (Tech, Business, Sport).
+                            </p>
+                            <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center">
+                                <span class="text-xs text-slate-400 font-mono">Rest API</span>
+                                <i class="fas fa-check-circle text-indigo-500"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Events Module -->
+                    <div class="tech-card-new">
+                        <div class="card-header header-rose">
+                            <i class="fas fa-ticket-alt text-2xl"></i>
+                            <h3>SerpApi (Events)</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-xs font-bold text-rose-600 uppercase mb-2 tracking-wider">Local Discovery</div>
+                            <p class="text-sm text-slate-600">
+                                Allocated to the <code>find_local_events()</code> function. Scrapes Google Events for real-time happenings in the specific city.
+                            </p>
+                            <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center">
+                                <span class="text-xs text-slate-400 font-mono">Scraping</span>
+                                <i class="fas fa-check-circle text-rose-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Model Strategy -->
+            <section id="model-strategy">
+                <h2 class="text-3xl mb-6">3. Dual-Model Architecture</h2>
+                <div class="mb-6 bg-indigo-50 border border-indigo-100 p-4 rounded-lg flex items-start gap-4">
+                    <i class="fas fa-info-circle text-indigo-500 mt-1"></i>
+                    <p class="text-sm text-indigo-800">
+                        <strong>Architecture Note:</strong> Synchro AI utilizes a "Manager-Worker" pattern. The heavier reasoning model manages the conversation, while the lighter model handles rapid data retrieval.
+                    </p>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Model Allocation</th>
+                            <th>Gemini 2.5 Flash</th>
+                            <th>Gemini 2.5 Flash-Lite</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-bold text-slate-700">Primary Role</td>
+                            <td><span class="bg-teal-100 text-teal-800 text-xs px-2 py-1 rounded font-bold">The Planner</span></td>
+                            <td><span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded font-bold">The Scout</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold text-slate-700">Allocated Function</td>
+                            <td class="mono text-sm text-slate-600">smart_plan(city)</td>
+                            <td class="mono text-sm text-slate-600">get_forcasted_weather(city)</td>
+                        </tr>
+                        <tr>
+                            <td class="font-bold text-slate-700">Reasoning</td>
+                            <td class="text-sm text-slate-600">Synthesizes conflicting data points (Rain vs Event) into coherent advice.</td>
+                            <td class="text-sm text-slate-600">Optimized for high-speed tool calling and JSON formatting.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Smart Planner Logic -->
+            <section id="smart-planner">
+                <h2 class="text-3xl mb-6">4. Agent Logic: The Smart Planner</h2>
+                <p class="mb-8 text-slate-500">The core intelligence engine that binds the 3 APIs together.</p>
+
+                <!-- Smart Planner Highlight Card -->
+                <div class="tech-card-new mb-8 border-slate-300">
+                    <div class="card-header header-dark">
+                        <i class="fas fa-brain text-2xl text-teal-400"></i>
+                        <h3 class="text-white">Smart Planner Logic Flow</h3>
+                    </div>
+                    <div class="card-body bg-slate-50">
+                        
+                        <!-- Step 1 -->
+                        <div class="workflow-step">
+                            <h4 class="text-lg font-bold mb-2 text-slate-700">Step 1: Data Ingestion</h4>
+                            <p class="text-sm text-slate-600">
+                                The <code>smart_plan</code> function triggers parallel calls to:
+                                <ul class="list-disc list-inside mt-2 text-xs font-mono text-slate-500 bg-white p-3 rounded border border-slate-200">
+                                    <li>OpenWeatherMap API (Atmosphere)</li>
+                                    <li>SerpApi (Events)</li>
+                                    <li>Google Search Grounding (Tourist Spots)</li>
+                                </ul>
+                            </p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="workflow-step">
+                            <h4 class="text-lg font-bold mb-2 text-slate-700">Step 2: Cross-Reference Analysis</h4>
+                            <p class="text-sm text-slate-600">
+                                The model evaluates the <strong>Events</strong> against the <strong>Weather</strong>.
+                                <br><span class="italic text-rose-500">"If precip_prob > 50% AND event_type == 'outdoor', THEN flag_event(warning)"</span>
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="workflow-step">
+                            <h4 class="text-lg font-bold mb-2 text-slate-700">Step 3: Synthesis</h4>
+                            <p class="text-sm text-slate-600">
+                                Generates a Markdown-formatted itinerary with embedded links, categorized by time of day.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Visual Evidence -->
+            <section id="visuals">
+                <h2 class="text-3xl mb-6">5. System Visuals</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Image 1 -->
+                    <div>
+                        <div class="img-container">
+                            <img src="./Screen Shot/1.png" alt="Home Screen">
+                            <div class="img-caption">Fig 1. Synchro Home Dashboard.</div>
+                        </div>
+                    </div>
+
+                    <!-- Image 2 -->
+                    <div>
+                        <div class="img-container">
+                            <img src="./Screen Shot/2.png" alt="Input Screen">
+                            <div class="img-caption">Fig 2. Location Context Input.</div>
+                        </div>
+                    </div>
+
+                    <!-- Image 3 -->
+                    <div>
+                        <div class="img-container">
+                            <img src="./Screen Shot/3.png" alt="Weather Result">
+                            <div class="img-caption">Fig 3. AI Weather Interpretation.</div>
+                        </div>
+                    </div>
+
+                    <!-- Image 4 -->
+                    <div>
+                        <div class="img-container">
+                            <img src="./Screen Shot/4.png" alt="News Feed">
+                            <div class="img-caption">Fig 4. Intelligent News Summarization.</div>
+                        </div>
+                    </div>
+					
+					<!-- Image 5 -->
+                    <div>
+                        <div class="img-container">
+                            <img src="./Screen Shot/5.png" alt="Weather Result">
+                            <div class="img-caption">Fig 5. Your Smart Planner Day.</div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 mt-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="font-mono text-sm opacity-60">Synchro AI • Technical Documentation </p>
+            <div class="mt-4 flex justify-center gap-4 text-xs">
+                <span>Python</span>
+                <span>•</span>
+                <span>Streamlit</span>
+                <span>•</span>
+                <span>Gemini API</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
